@@ -11,12 +11,12 @@ workflows:
 
       - name: Download Gradle
         script: |
-          curl -L https://services.gradle.org/distributions/gradle-8.7-bin.zip -o gradle.zip
+          curl -L https://services.gradle.org/distributions/gradle-8.9-bin.zip -o gradle.zip
           unzip -q gradle.zip
 
       - name: Build Android APK
         script: |
-          ./gradle-8.7/bin/gradle assembleDebug
+          ./gradle-8.9/bin/gradle assembleDebug
 
     artifacts:
       - app/build/outputs/**/*.apk

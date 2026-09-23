@@ -1,17 +1,22 @@
 workflows:
   android-debug:
     name: Clock App Android
-    instance_type: mac_mini_m2
     max_build_duration: 60
+    instance_type: mac_mini_m2
 
     scripts:
       - name: Set Android SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
 
+      - name: Download Gradle
+        script: |
+          curl -L https://services.gradle.org/distributions/gradle-8.7-bin.zip -o gradle.zip
+          unzip -q gradle.zip
+
       - name: Build Android APK
         script: |
-          ./gradlew assembleDebug
+          ./gradle-8.7/bin/gradle assembleDebug
 
     artifacts:
       - app/build/outputs/**/*.apk
